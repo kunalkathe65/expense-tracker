@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+
+import IncomeContext from "../context/income/incomeContext";
 
 const Dashboard = () => {
+  const incomeContext = useContext(IncomeContext);
+  const { totalIncome, loading, getTotalIncome } = incomeContext;
+
+  useEffect(() => {
+    getTotalIncome();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <div style={{ marginTop: "5%" }}>
       <ul className="collection with-header">
@@ -13,7 +23,7 @@ const Dashboard = () => {
         </li>
         <li className="collection-item">
           <h5>
-            Income <b className="green-text"> : 5000 Rs</b>
+            Income <b className="green-text"> : {!loading && totalIncome} Rs</b>
           </h5>
         </li>
         <li className="collection-item">

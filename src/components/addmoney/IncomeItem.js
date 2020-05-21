@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import Moment from "react-moment";
 import PropTypes from "prop-types";
+import M from "materialize-css/dist/js/materialize.min.js";
+
+import IncomeContext from "../../context/income/incomeContext";
 
 const IncomeItem = ({ income }) => {
-  const { amount, date } = income;
+  const incomeContext = useContext(IncomeContext);
+  const { deleteIncome } = incomeContext;
+
+  const { id, amount, date } = income;
+
+  const onDelete = () => {
+    deleteIncome(amount, id);
+    M.toast({ html: `Income of ${amount} has been deleted!` });
+  };
+
   return (
-    <ul className="collection with-header">
-      <li className="collection-header center">Added Income List</li>
-      <li className="collection-item">
-        <div>
-          <span>
-            <span className="green-text">
-              {amount}Rs added on{" "}
-              <span className="grey-text">
-                <Moment format="DD/MM/YYYY">{date}</Moment>
-              </span>
+    <li className="collection-item">
+      <div>
+        <span>
+          <span className="green-text">
+            {amount}Rs added on{" "}
+            <span className="grey-text">
+              <Moment format="DD/MM/YYYY hh:mm">{date}</Moment>
             </span>
           </span>
-          <a href="!#" className="secondary-content">
-            <i className="material-icons" style={{ color: "red" }}>
-              remove_circle_outline
-            </i>
-          </a>
-        </div>
-      </li>
-    </ul>
+        </span>
+        <a href="!#" className="secondary-content" onClick={onDelete}>
+          <i className="material-icons" style={{ color: "red" }}>
+            remove_circle_outline
+          </i>
+        </a>
+      </div>
+    </li>
   );
 };
 

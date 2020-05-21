@@ -7,22 +7,25 @@ import Dashboard from "./components/Dashboard";
 import AddMoney from "./components/addmoney/AddMoney";
 import AddExpense from "./components/expenses/AddExpense";
 import ClearAllBtn from "./components/ClearAllBtn";
+import IncomeState from "./context/income/IncomeState";
 
 function App() {
   useEffect(() => {
     M.AutoInit();
   });
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12">
-          <Dashboard />
-          <AddMoney />
-          <AddExpense />
-          <ClearAllBtn />
+    <IncomeState>
+      <div className="container">
+        <div className="row">
+          <div className="col s12">
+            <Dashboard />
+            <AddMoney />
+            <AddExpense />
+            <ClearAllBtn />
+          </div>
         </div>
       </div>
-    </div>
+    </IncomeState>
   );
 }
 
