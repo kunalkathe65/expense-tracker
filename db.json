@@ -1,0 +1,15 @@
+{
+  "totalIncome": 0,
+  "totalExpenses": 0,
+  "expenses": {
+    "id": 1,
+    "reason": "Bought car",
+    "amount": 5000,
+    "date": "20/05/2020"
+  },
+  "incomes": {
+    "id": 1,
+    "amount": 5000,
+    "date": "20/05/2020"
+  }
+}
