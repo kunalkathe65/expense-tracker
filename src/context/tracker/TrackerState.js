@@ -313,7 +313,6 @@ const TrackerState = (props) => {
         },
       });
       const newData = await response_2.json();
-      console.log(newData);
       dispatch({
         type: DELETE_EXPENSE,
         payload_1: id,

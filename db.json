@@ -1,12 +1,18 @@
 {
   "totalIncome": {
     "id": 1,
-    "totalIncome": 0
+    "totalIncome": 100
   },
   "totalExpense": {
     "id": 1,
     "totalExpense": 0
   },
   "expenses": [],
-  "incomes": []
+  "incomes": [
+    {
+      "amount": 100,
+      "date": "2020-05-22T08:16:15.112Z",
+      "id": 1
+    }
+  ]
 }

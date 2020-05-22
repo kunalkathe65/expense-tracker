@@ -37,6 +37,11 @@ const ExpenseItem = ({ expense }) => {
             remove_circle_outline
           </i>
         </a>
+        <a href="!#" className="secondary-content">
+          <i className="material-icons" style={{ color: "black" }}>
+            create
+          </i>
+        </a>
       </div>
     </li>
   );

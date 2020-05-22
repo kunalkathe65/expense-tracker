@@ -13,10 +13,10 @@ const Dashboard = () => {
   } = trackerContext;
 
   useEffect(() => {
-    getTotalIncome();
     getTotalExpense();
+    getTotalIncome();
     //eslint-disable-next-line
-  }, []);
+  }, [totalExpense, totalIncome]);
 
   return (
     <div style={{ marginTop: "5%" }}>
