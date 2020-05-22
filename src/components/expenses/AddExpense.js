@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import ExpenseItem from "./ExpenseItem";
+import TrackerContext from "../../context/tracker/trackerContext";
 
 const AddExpense = () => {
+  const trackerContext = useContext(TrackerContext);
+  const { loading, addExpense, expenses, getExpenses } = trackerContext;
+
   const [expense, setExpense] = useState({
     reason: "",
     amount: "",
   });
 
-  const expenses = [
-    {
-      id: 1,
-      reason: "Bought car",
-      amount: 5000,
-    },
-  ];
+  useEffect(() => {
+    getExpenses();
+    //eslint-disable-next-line
+  }, []);
 
   const onChange = (e) => {
     setExpense({
@@ -29,7 +30,21 @@ const AddExpense = () => {
     if (reason === "" || amount === "") {
       M.toast({ html: "Please fill all the fields" });
     } else {
-      console.log(expense);
+      const expense = {
+        reason,
+        amount: +amount,
+        date: new Date(),
+      };
+      addExpense(expense);
+      if (!loading) {
+        M.toast({ html: "You can't spend more than your income!" });
+      } else {
+        M.toast({ html: `Expense of ${amount} has been added!` });
+      }
+      setExpense({
+        reason: "",
+        amount: "",
+      });
     }
   };
   return (
@@ -56,9 +71,14 @@ const AddExpense = () => {
         <i className="material-icons left">remove</i>
         Spent
       </button>
-      {expenses.map((expense) => (
-        <ExpenseItem expense={expense} key={expense.id} />
-      ))}
+      <ul className="collection with-header">
+        <li className="collection-header center">Expense List</li>
+        {!loading &&
+          expenses !== null &&
+          expenses.map((expense) => (
+            <ExpenseItem expense={expense} key={expense.id} />
+          ))}
+      </ul>
     </div>
   );
 };

@@ -7,14 +7,14 @@ import Dashboard from "./components/Dashboard";
 import AddMoney from "./components/addmoney/AddMoney";
 import AddExpense from "./components/expenses/AddExpense";
 import ClearAllBtn from "./components/ClearAllBtn";
-import IncomeState from "./context/income/IncomeState";
+import TrackerState from "./context/tracker/TrackerState";
 
 function App() {
   useEffect(() => {
     M.AutoInit();
   });
   return (
-    <IncomeState>
+    <TrackerState>
       <div className="container">
         <div className="row">
           <div className="col s12">
@@ -25,7 +25,7 @@ function App() {
           </div>
         </div>
       </div>
-    </IncomeState>
+    </TrackerState>
   );
 }
 

@@ -2,11 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import IncomeItem from "./IncomeItem";
-import IncomeContext from "../../context/income/incomeContext";
+import TrackerContext from "../../context/tracker/trackerContext";
 
 const AddMoney = () => {
-  const incomeContext = useContext(IncomeContext);
-  const { income, loading, addIncome, getIncomes } = incomeContext;
+  const trackerContext = useContext(TrackerContext);
+  const { income, loading, addIncome, getIncomes } = trackerContext;
 
   useEffect(() => {
     getIncomes();

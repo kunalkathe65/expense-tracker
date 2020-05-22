@@ -3,11 +3,11 @@ import Moment from "react-moment";
 import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-import IncomeContext from "../../context/income/incomeContext";
+import TrackerContext from "../../context/tracker/trackerContext";
 
 const IncomeItem = ({ income }) => {
-  const incomeContext = useContext(IncomeContext);
-  const { deleteIncome } = incomeContext;
+  const trackerContext = useContext(TrackerContext);
+  const { deleteIncome } = trackerContext;
 
   const { id, amount, date } = income;
 

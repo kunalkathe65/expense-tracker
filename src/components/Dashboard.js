@@ -1,13 +1,20 @@
 import React, { useContext, useEffect } from "react";
 
-import IncomeContext from "../context/income/incomeContext";
+import TrackerContext from "../context/tracker/trackerContext";
 
 const Dashboard = () => {
-  const incomeContext = useContext(IncomeContext);
-  const { totalIncome, loading, getTotalIncome } = incomeContext;
+  const trackerContext = useContext(TrackerContext);
+  const {
+    totalIncome,
+    loading,
+    getTotalIncome,
+    totalExpense,
+    getTotalExpense,
+  } = trackerContext;
 
   useEffect(() => {
     getTotalIncome();
+    getTotalExpense();
     //eslint-disable-next-line
   }, []);
 
@@ -23,17 +30,13 @@ const Dashboard = () => {
         </li>
         <li className="collection-item">
           <h5>
-            Income <b className="green-text"> : {!loading && totalIncome} Rs</b>
+            Wallet <b className="green-text"> : {!loading && totalIncome} Rs</b>
           </h5>
         </li>
         <li className="collection-item">
           <h5>
-            Expenses <b className="red-text"> : 3000 Rs</b>
-          </h5>
-        </li>
-        <li className="collection-item">
-          <h5>
-            Remaining <b className="blue-text"> : 2000 Rs</b>
+            Expenses{" "}
+            <b className="red-text"> : {!loading && totalExpense} Rs</b>
           </h5>
         </li>
       </ul>

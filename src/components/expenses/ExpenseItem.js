@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
+import M from "materialize-css/dist/js/materialize.min.js";
+
+import TrackerContext from "../../context/tracker/trackerContext";
 
 const ExpenseItem = ({ expense }) => {
-  const { reason, amount, date } = expense;
+  const { id, reason, amount, date } = expense;
+
+  const trackerContext = useContext(TrackerContext);
+  const { deleteExpense } = trackerContext;
+
+  const onDelete = () => {
+    deleteExpense(amount, id);
+    M.toast({ html: `Expense of ${amount} id deleted!!` });
+  };
+
   return (
-    <ul className="collection with-header">
-      <li className="collection-header center">Expense List</li>
-      <li className="collection-item">
-        <div>
+    <li className="collection-item">
+      <div>
+        <span>
           <span>
-            <span>
-              Spent{" "}
-              <span className="red-text">
-                {amount}Rs{" "}
-                <span className="grey-text">
-                  on <Moment format="DD/MM/YYYY">{date}</Moment>
-                </span>
+            Spent{" "}
+            <span className="red-text">
+              {amount}Rs{" "}
+              <span className="grey-text">
+                on <Moment format="DD/MM/YYYY hh:mm">{date}</Moment>
               </span>
             </span>
-            <br />
-            <span className="black-text">{reason}</span>
           </span>
-          <a href="!#" className="secondary-content">
-            <i className="material-icons" style={{ color: "red" }}>
-              remove_circle_outline
-            </i>
-          </a>
-        </div>
-      </li>
-    </ul>
+          <br />
+          <span className="black-text">{reason}</span>
+        </span>
+        <a href="!#" className="secondary-content" onClick={onDelete}>
+          <i className="material-icons" style={{ color: "red" }}>
+            remove_circle_outline
+          </i>
+        </a>
+      </div>
+    </li>
   );
 };
 

@@ -3,16 +3,10 @@
     "id": 1,
     "totalIncome": 0
   },
-  "totalExpenses": {
-    "totalExpenses": 0
+  "totalExpense": {
+    "id": 1,
+    "totalExpense": 0
   },
-  "expenses": [
-    {
-      "id": 1,
-      "reason": "Bought car",
-      "amount": 5000,
-      "date": "20/05/2020"
-    }
-  ],
+  "expenses": [],
   "incomes": []
 }
